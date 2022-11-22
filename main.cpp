@@ -30,7 +30,7 @@ for(int i = 0; i < vec.size(); ++i)
 {
 if(vec[i]->measure_unit == "g")
 {
-cout «"Acceleration = " « vec[i]->measure() « " g" « endl;
+cout <<"Acceleration = " << vec[i]->measure() << " g" << endl;
 }
 }
 }
@@ -90,3 +90,37 @@ class Position: public dat
         return dist(e2);
     }
 };
+
+int main()
+{
+    int n;
+    GPS_System A;
+    Acceleration B;
+    Gyroscop D;
+    Position C;
+    cout << "Добро пожаловать в GPS_System"<< endl;
+    cout<<"Какой датчик хотите подключить?"<<endl;
+    do {
+    cout<<"Для подключения Акселерометра нажмите - 1"<<endl;
+    cout<<"Для подключения Гироскопа нажмите - 2 "<<endl;
+    cout<<"Для подключения Позиции нажмите - 3 "<<endl;
+    cin>> n;
+    switch (n)
+    {case 1:
+        A.add_sensor(&B);
+         A.measure_acc();
+         break;
+    case 2:
+         A.add_sensor(&D);
+         A.measure_gyro();
+         break;
+    case 3:
+         A.add_sensor(&C);
+         A.measure_position();
+         break;
+    default: continue;
+    }
+    
+    }while(9);
+    return 0;
+}
