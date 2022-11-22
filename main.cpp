@@ -1,16 +1,36 @@
 #include <iostream>
-#include <string.h>
 #include <cstdlib> // для system
+#include <random>
+#include <vector>
 using namespace std;
 
+class dat
+{
+public:
+string name;
+string measure_unit;
+double min_measure_range, max_measure_range;
+virtual double measure()
+{
+return 0;
+}
+};
 
 class GPS_System{
 public:
-std::string name;
-void add_sensor();
-float measure_acc();
-float measure_gyro();
-float measure_position();
-float measure_sensors();
-void list_sensors();
-};
+string name;
+vector <dat*> vec;
+void add_sensor(dat* obj)
+{
+vec.push_back(obj);
+}
+void measure_acc()
+{
+for(int i = 0; i < vec.size(); ++i)
+{
+if(vec[i]->measure_unit == "g")
+{
+cout «"Acceleration = " « vec[i]->measure() « " g" « endl;
+}
+}
+}
