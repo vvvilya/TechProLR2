@@ -6,34 +6,61 @@ using namespace std;
 
 class dat
 {
-public:
-string name;
-string measure_unit;
-double min_measure_range, max_measure_range;
-virtual double measure()
-{
-return 0;
-}
+    public:
+    string name;
+    string measure_unit;
+    double min_measure_range, max_measure_range;
+    virtual double measure()
+    {
+        return 0;
+    }
 };
 
+
 class GPS_System{
-public:
-string name;
-vector <dat*> vec;
-void add_sensor(dat* obj)
-{
-vec.push_back(obj);
-}
-void measure_acc()
-{
-for(int i = 0; i < vec.size(); ++i)
-{
-if(vec[i]->measure_unit == "g")
-{
-cout <<"Acceleration = " << vec[i]->measure() << " g" << endl;
-}
-}
-}
+    public:
+    string name;
+    vector <dat*> vec;
+    void add_sensor(dat* obj)
+    {
+        vec.push_back(obj);
+    }
+    void measure_acc()
+    {
+        for(int i = 0; i < vec.size(); ++i)
+        {
+            if(vec[i]->measure_unit == "g")
+            {
+                cout <<"Acceleration = " <<  vec[i]->measure() << " g" << endl;
+            }
+        }
+    }
+    
+    void measure_gyro()
+    {
+       for (int j=0; j < vec.size(); j++)
+       {
+           if (vec[j]->measure_unit =="gradus")
+           {
+               cout <<"Angle = " << vec[j]->measure() << " gradus" << endl;
+           }
+       }
+    }
+    
+    void measure_position()
+    {
+         for(int k = 0; k < vec.size(); ++k)
+        {
+            if(vec[k]->measure_unit == "km")
+            {
+                cout << "Position = " << vec[k]->measure() << " km" << endl;
+            }
+        }
+    }
+    
+    void list_sensors();
+};     
+
 //////////////////////датчики///////////////////////////////////////////////
 class Acceleration: public dat
 {
@@ -98,12 +125,12 @@ int main()
     Acceleration B;
     Gyroscop D;
     Position C;
-    cout << "Добро пожаловать в GPS_System"<< endl;
-    cout<<"Какой датчик хотите подключить?"<<endl;
+    cout << "Welcome GPS_System"<< endl;
+    cout<<"Which sensor do you want to connect?"<<endl;
     do {
-    cout<<"Для подключения Акселерометра нажмите - 1"<<endl;
-    cout<<"Для подключения Гироскопа нажмите - 2 "<<endl;
-    cout<<"Для подключения Позиции нажмите - 3 "<<endl;
+    cout<<"To connect the Accelerometer, press - 1"<<endl;
+    cout<<"To connect the Gyroscope, press - 2 "<<endl;
+    cout<<"To connect the Position, press - 3 "<<endl;
     cin>> n;
     switch (n)
     {case 1:
