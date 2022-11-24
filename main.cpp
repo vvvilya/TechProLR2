@@ -27,7 +27,7 @@ class GPS_System{
     }
     void measure_acc()
     {
-        for(int i = 0; i < vec.size(); ++i)
+        for(long long unsigned int i = 0; i < vec.size(); ++i)
         {
             if(vec[i]->measure_unit == "g")
             {
@@ -38,7 +38,7 @@ class GPS_System{
     
     void measure_gyro()
     {
-       for (int j=0; j < vec.size(); j++)
+       for (long long unsigned int j=0; j < vec.size(); j++)
        {
            if (vec[j]->measure_unit =="gradus")
            {
@@ -49,7 +49,7 @@ class GPS_System{
     
     void measure_position()
     {
-         for(int k = 0; k < vec.size(); ++k)
+         for(long long unsigned int k = 0; k < vec.size(); ++k)
         {
             if(vec[k]->measure_unit == "km")
             {
