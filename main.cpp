@@ -58,7 +58,13 @@ class GPS_System{
         }
     }
     
-    void list_sensors();
+    void list_sensors()
+    {
+         for (long long unsigned int k = 0; k < vec.size(); ++k) {
+                cout << vec[k]->name << " ";
+            }
+            cout << endl;
+    }
 };     
 
 //////////////////////датчики///////////////////////////////////////////////
@@ -67,6 +73,7 @@ class Acceleration: public dat
     public:    
     Acceleration():dat()
     {
+        name = "Acceleration";
         measure_unit = "g";//единица измерения g-перегрузка
         min_measure_range = 0.0;
         max_measure_range = 500.0;
@@ -86,6 +93,7 @@ class Gyroscop: public dat
     public:
     Gyroscop():dat()
     {
+        name = "Gyroscop";
         measure_unit = "gradus";
         min_measure_range = 0;
         max_measure_range = 90;
@@ -105,6 +113,7 @@ class Position: public dat
     public:
     Position():dat()
     {
+        name = "Position";
         measure_unit = "km";
         min_measure_range = 0; 
         max_measure_range = 1000;
@@ -131,6 +140,7 @@ int main()
     cout<<"To connect the Accelerometer, press - 1"<<endl;
     cout<<"To connect the Gyroscope, press - 2 "<<endl;
     cout<<"To connect the Position, press - 3 "<<endl;
+    cout<<"To write all name, press - 4 "<<endl;
     cin>> n;
     switch (n)
     {case 1:
@@ -145,6 +155,9 @@ int main()
          A.add_sensor(&C);
          A.measure_position();
          break;
+    case 4:
+        A.list_sensors();
+        break;
     default: continue;
     }
     
